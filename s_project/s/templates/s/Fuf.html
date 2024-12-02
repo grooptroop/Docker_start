@@ -111,12 +111,17 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             display: none;
         }
+        /* Сделаем фон карт игрока прозрачным */
+        .player-cards-container {
+            background: transparent !important; /* Убираем фоновый цвет */
+            box-shadow: none; /* Убираем тень */
+        }
     </style>
 </head>
 <body>
     <div class="container-fluid game-area">
         <div class="text-center">
-            <h1>🤡</h1>
+            <h1>Игра 21</h1>
             <div class="dealer-area" id="dealer-area">
                 <h3>Карты дилера:</h3>
                 <div id="dealer-cards" class="card-stack"></div>
@@ -126,7 +131,8 @@
         </div>
 
         <div class="player-area">
-            <div id="player-cards" class="card-stack"></div>
+            <!-- Убираем фоновое выделение области карт игрока -->
+            <div id="player-cards" class="card-stack player-cards-container"></div>
             <p>Очки: <span id="player-score">0</span></p>
             <div class="controls">
                 <button type="button" class="btn" id="hit-button">Взять карту</button>
@@ -244,13 +250,13 @@
             document.getElementById('dealer-cards').innerHTML = '';
             document.getElementById('player-score').textContent = '0';
             document.getElementById('dealer-score').textContent = '';
-            document.getElementById('result-message').style.display = 'none';
-            document.getElementById('hit-button').disabled = false; // Включаем кнопку снова
+            document.getElementById('hit-button').disabled = false;
+            document.getElementById('dealer-area').classList.remove('show');
         }
 
         document.getElementById('hit-button').addEventListener('click', addPlayerCard);
         document.getElementById('stand-button').addEventListener('click', function() {
-            document.getElementById('hit-button').disabled = true; // Отключаем кнопку "Взять карту"
+            document.getElementById('hit-button').disabled = true;
             showDealerCards();
         });
 
