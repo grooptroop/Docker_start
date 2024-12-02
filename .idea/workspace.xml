@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bd265cf-e2ae-412b-8bc6-67886af8a508" name="Changes" comment="srok1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/s_project/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/s_project/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s_project/s/templates/s/Fuf.html" beforeDir="false" afterPath="$PROJECT_DIR$/s_project/s/templates/s/Fuf.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s_project/s/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/s_project/s/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s_project/s/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/s_project/s/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +91,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733169921310</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="srok1">
+      <option name="closed" value="true" />
+      <created>1733172275333</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733172275333</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
