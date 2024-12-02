@@ -6,7 +6,7 @@ urlpatterns = [
 path('', blackjack, name='krasota'),
 path('f', schedule_calendar, name='shedule'),
 path('LAB', table_view, name='table'),
-path('Fuf', krasota, name='Fuf'),
+path('Fuf', kaz, name='Fuf'),
 path('kaz', kaz, name='kaz'),
 
 ]
