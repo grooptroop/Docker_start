@@ -86,7 +86,7 @@
             bottom: 0;
             width: 100%;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
         }
         .dealer-area {
@@ -111,17 +111,26 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             display: none;
         }
-        /* Сделаем фон карт игрока прозрачным */
         .player-cards-container {
             background: transparent !important; /* Убираем фоновый цвет */
             box-shadow: none; /* Убираем тень */
         }
+        .controls-container {
+            background: #ffffff; /* Убираем прозрачность */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
     </style>
+
+    <div class="controls">
+    <a href="kaz" class="btn" style="margin-left: 20px; display: inline-block;">Казик</a> <!-- Ссылка на игру 21 -->
+    </div>
 </head>
 <body>
     <div class="container-fluid game-area">
         <div class="text-center">
-            <h1>Игра 21</h1>
+            <h1>🤡</h1>
             <div class="dealer-area" id="dealer-area">
                 <h3>Карты дилера:</h3>
                 <div id="dealer-cards" class="card-stack"></div>
@@ -131,10 +140,9 @@
         </div>
 
         <div class="player-area">
-            <!-- Убираем фоновое выделение области карт игрока -->
             <div id="player-cards" class="card-stack player-cards-container"></div>
             <p>Очки: <span id="player-score">0</span></p>
-            <div class="controls">
+            <div class="controls-container">
                 <button type="button" class="btn" id="hit-button">Взять карту</button>
                 <button type="button" class="btn btn-warning" id="stand-button">Хватит</button>
             </div>
@@ -162,7 +170,7 @@
         let dealerWins = 0;
 
         function generateCard() {
-            const rank = Math.floor(Math.random() * 11) + 2; // Теперь минимальная карта = 2
+            const rank = Math.floor(Math.random() * 11) + 2; // Максимальное значение карты = 11
             const suit = suits[Math.floor(Math.random() * suits.length)];
             const color = colors[suit];
             const cardElement = document.createElement('div');

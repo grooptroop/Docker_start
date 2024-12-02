@@ -99,3 +99,7 @@ def blackjack(request):
 
     request.session.modified = True
     return render(request, 's/Fuf.html', {'game_state': game_state})
+
+
+def kaz(request):
+    return render(request, 's/kaz.html')
