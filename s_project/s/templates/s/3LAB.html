@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .controls {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <label for="color">Цвет текста: </label>
+        <input type="color" id="color" name="color" value="#000000">
+
+        <label for="size">Размер текста: </label>
+        <input type="number" id="size" name="size" value="14" min="10" max="30"> px
+
+        <label for="rows">Количество строк: </label>
+        <select id="rows">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="all">Все</option>
+        </select>
+    </div>
+
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Время старта</th>
+                <th>Время конца</th>
+                <th>Город Старта</th>
+                <th>Город прибытия</th>
+                <th>Дата</th>
+                <th>Сотрудник</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.start_time }}</td>
+                <td>{{ item.end_time }}</td>
+                <td>{{ item.start_city }}</td>
+                <td>{{ item.end_city }}</td>
+                <td>{{ item.date }}</td>
+                <td>{{ item.employee }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const colorInput = document.getElementById('color');
+            const sizeInput = document.getElementById('size');
+            const rowsSelect = document.getElementById('rows');
+            const table = document.getElementById('data-table');
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.rows);
+
+            // Изменение цвета текста
+            colorInput.addEventListener('input', function () {
+                table.style.color = this.value;
+            });
+
+            // Изменение размера текста
+            sizeInput.addEventListener('input', function () {
+                table.style.fontSize = this.value + 'px';
+            });
+
+            // Изменение видимого количества строк
+            rowsSelect.addEventListener('change', function () {
+                const value = this.value;
+
+                rows.forEach((row, index) => {
+                    if (value === 'all' || index < parseInt(value)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+
+            // Инициализация: показать первые 5 строк
+            rowsSelect.value = '5';
+            rowsSelect.dispatchEvent(new Event('change'));
+        });
+    </script>
+</body>
+</html>

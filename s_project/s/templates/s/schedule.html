@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарь с расписанием</title>
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+    <style>
+        /* Основные стили страницы */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #calendar {
+            max-width: 1200px;
+            margin: 30px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Стили для заголовков календаря */
+        .fc-header-toolbar {
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .fc-header-toolbar button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .fc-header-toolbar button:hover {
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+
+        .fc-header-toolbar .fc-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Стили для дней в календаре */
+        .fc-daygrid-day {
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .fc-daygrid-day:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Стили для событий */
+        .fc-event {
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 0.875rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .fc-event:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Стиль для всплывающих подсказок (tooltip) с описанием события */
+        .fc-event-tooltip {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Стили для мобильных устройств */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            #calendar {
+                margin: 10px;
+            }
+
+            .fc-header-toolbar button {
+                font-size: 0.875rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Расписание</h1>
+    <div id="calendar"></div>
+
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'ru',
+                events: [
+                    {% for schedule in schedules %}
+                        {
+                            title: "От: {{ schedule.start_city }} До: {{ schedule.end_city }} ({{ schedule.employee.last_name }})",
+                            start: "{{ schedule.date|date:'Y-m-d' }}T{{ schedule.start_time|time:'H:i' }}:00",
+                            end: "{{ schedule.date|date:'Y-m-d' }}T{{ schedule.end_time|time:'H:i' }}:00",
+                            description: "Коэффициент эффективности: {{ schedule.efficiency.efficiency_value|default:'Не задано' }}"
+                        },
+                    {% endfor %}
+                ],
+                headerToolbar: {
+                    start: 'prev,next today',
+                    center: 'title',
+                    end: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                eventClick: function(info) {
+                    alert(info.event.title + "\n" + info.event.extendedProps.description);
+                }
+            });
+            calendar.render();
+        });
+    </script>
+</body>
+</html>

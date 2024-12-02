@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elegant Store</title>
+  <style>
+    /* Общий стиль */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(to bottom, #f9f9f9, #ececec);
+      color: #1d1d1f;
+      overflow-x: hidden;
+    }
+
+    /* Хедер */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      background: linear-gradient(to right, #007aff, #34c759);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header nav a {
+      text-decoration: none;
+      color: #333;
+      margin: 0 15px;
+      font-size: 0.9em;
+      transition: color 0.3s;
+    }
+
+    header nav a:hover {
+      color: #007aff;
+    }
+
+    /* Главная секция с гифкой */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(to bottom, #f3f4f6, #eef2f7);
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 4em;
+      font-weight: bold;
+      margin: 0;
+      background: linear-gradient(to right, #007aff, #34c759);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      color: #555;
+      margin: 20px 0 30px;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .hero img {
+      width: 70%;
+      max-width: 600px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .hero a {
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(to right, #007aff, #34c759);
+      padding: 15px 30px;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+      animation: fadeIn 2.5s ease-out;
+    }
+
+    .hero a:hover {
+      background: linear-gradient(to right, #0056d3, #28a745);
+      transform: scale(1.05);
+    }
+
+    /* Раздел продуктов */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      padding: 50px 20px;
+      background: #f9f9f9;
+      text-align: center;
+    }
+
+    .products .item {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .products .item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .products img {
+      max-width: 100px;
+      margin-bottom: 15px;
+    }
+
+    .products span {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Футер */
+    footer {
+      background: linear-gradient(to top, #eef2f7, #dce3f3);
+      color: #555;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+
+    footer a {
+      color: #007aff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Анимации */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Elegant love</div>
+    <nav>
+      <a href="#">крутой</a>
+      <a href="#">сленг</a>
+      <a href="#">крутых</a>
+      <a href="#">немощных</a>
+      <a href="#">бродяг</a>
+      <a href="#">ауф</a>
+    </nav>
+  </header>
+  <div class="hero">
+    <h1>тест</h1>
+    <p>не обижайся</p>
+    <img src="https://media.giphy.com/media/1zgOyfyvO5zeEsFnRA/giphy.gif" alt="Product GIF">
+    <a href="#">Продать душу</a>
+  </div>
+  <div class="products">
+    <div class="item">
+      <span>абаюнда</span>
+    </div>
+    <div class="item">
+      <span>курва</span>
+    </div>
+    <div class="item">
+      <span>чешечки</span>
+    </div>
+    <div class="item">
+      <span>жижа</span>
+    </div>
+    <div class="item">
+      <span>жмых</span>
+    </div>
+  </div>
+</body>
+</html>
