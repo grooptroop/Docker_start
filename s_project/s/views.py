@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Schedule, Efficiency
 from datetime import datetime
+import random
 
 
 def schedule_calendar(request):
@@ -45,3 +46,56 @@ def table_view(request):
 
 def krasota(request):
     return render(request, 's/krasota.html')
+
+
+
+# Симуляция игры 21
+def blackjack(request):
+    # Получаем состояние игры из сессии или инициализируем новое
+    if 'game_state' not in request.session:
+        request.session['game_state'] = {
+            'player_hand': [],
+            'dealer_hand': [],
+            'player_score': 0,
+            'dealer_score': 0,
+            'game_over': False,
+            'result': None,
+        }
+
+    game_state = request.session['game_state']
+
+    # Логика: Раздача карт игроку
+    if request.method == 'POST' and not game_state['game_over']:
+        if 'hit' in request.POST:  # Игрок берет карту
+            card = random.randint(1, 11)
+            game_state['player_hand'].append(card)
+            game_state['player_score'] += card
+
+            # Проверка на перебор
+            if game_state['player_score'] > 21:
+                game_state['game_over'] = True
+                game_state['result'] = 'Перебор! Вы проиграли.'
+
+        elif 'stand' in request.POST:  # Игрок завершает ход
+            # Ход дилера
+            while game_state['dealer_score'] < 17:
+                card = random.randint(1, 11)
+                game_state['dealer_hand'].append(card)
+                game_state['dealer_score'] += card
+
+            # Проверяем победителя
+            if game_state['dealer_score'] > 21 or game_state['player_score'] > game_state['dealer_score']:
+                game_state['result'] = 'Вы выиграли!'
+            elif game_state['player_score'] < game_state['dealer_score']:
+                game_state['result'] = 'Вы проиграли.'
+            else:
+                game_state['result'] = 'Ничья.'
+
+            game_state['game_over'] = True
+
+    # Сброс игры
+    if 'reset' in request.POST:
+        request.session.pop('game_state')
+
+    request.session.modified = True
+    return render(request, 's/Fuf.html', {'game_state': game_state})
