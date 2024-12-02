@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bd265cf-e2ae-412b-8bc6-67886af8a508" name="Changes" comment="srok1" />
+    <list default="true" id="3bd265cf-e2ae-412b-8bc6-67886af8a508" name="Changes" comment="srok11" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,13 +113,30 @@
       <option name="project" value="LOCAL" />
       <updated>1733173200517</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="srok11">
+      <option name="closed" value="true" />
+      <created>1733173459861</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733173459861</updated>
+    </task>
+    <task id="LOCAL-00009" summary="srok11">
+      <option name="closed" value="true" />
+      <created>1733173550222</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733173550222</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="sro" />
     <MESSAGE value="srok" />
     <MESSAGE value="srok1" />
-    <option name="LAST_COMMIT_MESSAGE" value="srok1" />
+    <MESSAGE value="srok11" />
+    <option name="LAST_COMMIT_MESSAGE" value="srok11" />
   </component>
 </project>
