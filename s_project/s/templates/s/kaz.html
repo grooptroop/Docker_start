@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Однорукий бандит</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+        }
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .slot-machine {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .slot {
+            width: 80px;
+            height: 80px;
+            margin: 0 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+            transition: all 0.3s ease; /* Плавный переход для подсветки */
+        }
+        .highlight {
+            border: 5px solid violet; /* Подсветка слота фиолетовой рамкой */
+            background-color: #f0f0f0;
+        }
+        .controls {
+            text-align: center;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #0056b3;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        #result-message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        #score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+        <div class="controls">
+            <a href="http://62.109.19.230/" class="btn" style="margin-left: 20px; display: inline-block;">21</a> <!-- Ссылка на игру 21 -->
+        </div>
+<body>
+
+    <div class="game-container">
+        <h1>Однорукий бандит</h1>
+        <!-- Показываем счёт -->
+        <div id="score">Счёт: 400</div>
+
+        <div class="slot-machine">
+            <div class="slot" id="slot-1">🍎</div>
+            <div class="slot" id="slot-2">🍋</div>
+            <div class="slot" id="slot-3">🍒</div>
+        </div>
+
+        <div class="controls">
+            <button id="spin-button" class="btn">Крутить</button>
+            <p id="result-message"></p>
+        </div>
+    </div>
+
+    <footer>
+        Сделано с любовью 🃏
+    </footer>
+
+    <script>
+        const slotItems = ['🍎', '🍋', '🍒', '🍓', '🍍'];
+        const spinButton = document.getElementById('spin-button');
+        const resultMessage = document.getElementById('result-message');
+        const scoreElement = document.getElementById('score');
+        const slots = [document.getElementById('slot-1'), document.getElementById('slot-2'), document.getElementById('slot-3')];
+
+        let score = 400; // Начальный счёт
+
+        // Функция для обновления счёта
+        function updateScore(amount) {
+            score += amount;
+            scoreElement.textContent = `Счёт: ${score}`; // Обновляем отображение счёта
+        }
+
+        function spinSlots() {
+            if (score < 25) {
+                resultMessage.textContent = "Недостаточно монет для вращения!";
+                return;
+            }
+
+            spinButton.disabled = true;
+            resultMessage.textContent = 'Крутится...';
+
+            // Уменьшаем счёт на 25 за вращение
+            updateScore(-50);
+
+            // Эмуляция вращения
+            let spinInterval = 0;
+            const totalSpinTime = 2000; // Время вращения (в миллисекундах)
+            const spinSpeed = 300; // Скорость смены эмодзи (в миллисекундах)
+            const totalIterations = totalSpinTime / spinSpeed;
+
+            let iteration = 0;
+
+            // Начинаем прокрутку эмодзи
+            const interval = setInterval(() => {
+                slots.forEach((slot) => {
+                    const randomIndex = Math.floor(Math.random() * slotItems.length);
+                    slot.textContent = slotItems[randomIndex];
+                });
+
+                iteration++;
+
+                // Останавливаем прокрутку после заданного времени
+                if (iteration >= totalIterations) {
+                    clearInterval(interval);
+                    // Выбираем случайное эмодзи для каждого слота
+                    slots.forEach((slot) => {
+                        const randomIndex = Math.floor(Math.random() * slotItems.length);
+                        slot.textContent = slotItems[randomIndex];
+                    });
+
+                    // Проверка на совпадение эмодзи
+                    const results = slots.map(slot => slot.textContent);
+
+                    // Подсветка слотов, если эмодзи совпадают
+                    slots.forEach((slot, index) => {
+                        const otherSlots = results.filter((result, i) => i !== index && result === results[index]);
+                        if (otherSlots.length > 0) {
+                            slot.classList.add('highlight');
+                        } else {
+                            slot.classList.remove('highlight');
+                        }
+                    });
+
+                    // Логика выигрыша и добавление монет
+                    if (results[0] === results[1] && results[1] === results[2]) {
+                        resultMessage.textContent = 'Вы выиграли 200 монет!';
+                        updateScore(200); // Три совпадения дают 200 монет
+                    } else if (results[0] === results[1] || results[1] === results[2] || results[0] === results[2]) {
+                        resultMessage.textContent = 'Вы выиграли 75 монет!';
+                        updateScore(75); // Два совпадения дают 75 монет
+                    } else {
+                        resultMessage.textContent = 'Попробуйте снова!';
+                    }
+
+                    spinButton.disabled = false; // Включаем кнопку снова
+                }
+            }, spinSpeed); // Меняем эмодзи каждые 0.3 секунды
+        }
+
+        spinButton.addEventListener('click', spinSlots);
+    </script>
+</body>
+</html>
