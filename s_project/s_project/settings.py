@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'Click_data',
         'USER': 'admin',
         'PASSWORD': '2288dikie',
-        'HOST': 'localhost',  # Для связи контейнера с локальным хостом PostgreSQL
+        'HOST': '62.109.19.230',
         'PORT': '',
     }
 }
