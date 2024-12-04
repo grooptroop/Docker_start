@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'Click_data',
         'USER': 'admin',
         'PASSWORD': '2288dikie',
-        'HOST': '62.109.19.230',
+        'HOST': '127.0.0.1',
         'PORT': '',
     }
 }
