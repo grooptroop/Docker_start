@@ -11,6 +11,16 @@ services:
       - "8000:8000"
     networks:
       - app_network
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 2288dikie
+      POSTGRES_DB: click_data
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
   nginx:
     image: nginx:latest

@@ -77,7 +77,7 @@ WSGI_APPLICATION = 's_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Click_data',
+        'NAME': 'click_data',
         'USER': 'admin',
         'PASSWORD': '2288dikie',
         'HOST': '127.0.0.1',
