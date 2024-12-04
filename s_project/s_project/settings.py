@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'Click_data',
         'USER': 'admin',
         'PASSWORD': '2288dikie',
-        'HOST': 'host.docker.internal',  # Для связи контейнера с локальным хостом PostgreSQL
+        'HOST': 'localhost',  # Для связи контейнера с локальным хостом PostgreSQL
         'PORT': '',
     }
 }
